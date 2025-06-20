@@ -31,6 +31,14 @@
   flex-direction: column;
   gap: 0.5rem;
   margin-top: 1.5rem;
+  mat-form-field {
+    margin-bottom: 0.5rem;
+  }
+
+  mat-error {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
 }
 
 .full-width {
