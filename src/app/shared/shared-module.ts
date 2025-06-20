@@ -4,8 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
-
-
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [],
   imports: [
@@ -14,15 +17,26 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     ReactiveFormsModule,
     HttpClientModule,
     RouterLink,
-    RouterOutlet
+    RouterOutlet,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
   ],
-  exports:[
+  exports: [
     CommonModule,
-     FormsModule,
+    FormsModule,
+
     ReactiveFormsModule,
     HttpClientModule,
     RouterLink,
-    RouterOutlet
-  ]
+    RouterOutlet,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
