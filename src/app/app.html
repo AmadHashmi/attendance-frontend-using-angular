@@ -39,7 +39,10 @@
         <span matListItemTitle *ngIf="isExpanded || isShowing">Attendance</span>
       </mat-list-item>
 
-      <mat-list-item routerLink="/admin/projects" routerLinkActive="active">
+      <mat-list-item
+        routerLink="/admin/manage-projects"
+        routerLinkActive="active"
+      >
         <mat-icon matListItemIcon>work</mat-icon>
         <span matListItemTitle *ngIf="isExpanded || isShowing">Projects</span>
       </mat-list-item>

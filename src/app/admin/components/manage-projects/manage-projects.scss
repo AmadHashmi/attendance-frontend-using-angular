@@ -1,0 +1,66 @@
+.project-management-container {
+  padding: 24px;
+
+  .header {
+    margin-bottom: 24px;
+
+    h1 {
+      margin: 0;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 8px 0 0;
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  .two-column-layout {
+    display: flex;
+    gap: 24px;
+
+    .form-column,
+    .list-column {
+      flex: 1;
+    }
+  }
+
+  mat-card {
+    margin-bottom: 24px;
+
+    mat-card-content {
+      padding-top: 16px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .search-control {
+    margin-bottom: 16px;
+  }
+
+  mat-table {
+    width: 100%;
+    margin-bottom: 16px;
+
+    mat-icon {
+      cursor: pointer;
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 959px) {
+  .two-column-layout {
+    flex-direction: column !important;
+  }
+}
