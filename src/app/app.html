@@ -1,1 +1,110 @@
-<router-outlet />
+<!-- sidenav.component.html -->
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #sidenav
+    [(opened)]="isExpanded"
+    [mode]="'side'"
+    class="sidenav"
+    fixedInViewport="true"
+  >
+    <div class="sidenav-header">
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span *ngIf="isExpanded">Attendance App</span>
+    </div>
+
+    <!-- Login/Logout Section (Visible to all) -->
+    <mat-nav-list
+      *ngIf="!isAdminLoggedIn && !isEmployeeLoggedIn && !isManagerLoggedIn"
+    >
+      <mat-list-item routerLink="/" routerLinkActive="active">
+        <mat-icon matListItemIcon>login</mat-icon>
+        <span matListItemTitle *ngIf="isExpanded || isShowing">Login</span>
+      </mat-list-item>
+    </mat-nav-list>
+
+    <!-- Admin Section -->
+    <mat-divider *ngIf="isExpanded || isShowing"></mat-divider>
+    <mat-nav-list *ngIf="isAdminLoggedIn">
+      <h3 matSubheader *ngIf="isExpanded || isShowing">Admin</h3>
+
+      <mat-list-item routerLink="/admin/dashboard" routerLinkActive="active">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle *ngIf="isExpanded || isShowing">Dashboard</span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/admin/attendance" routerLinkActive="active">
+        <mat-icon matListItemIcon>event_available</mat-icon>
+        <span matListItemTitle *ngIf="isExpanded || isShowing">Attendance</span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/admin/projects" routerLinkActive="active">
+        <mat-icon matListItemIcon>work</mat-icon>
+        <span matListItemTitle *ngIf="isExpanded || isShowing">Projects</span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/admin/managers" routerLinkActive="active">
+        <mat-icon matListItemIcon>supervisor_account</mat-icon>
+        <span matListItemTitle *ngIf="isExpanded || isShowing">Managers</span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/admin/employees" routerLinkActive="active">
+        <mat-icon matListItemIcon>people</mat-icon>
+        <span matListItemTitle *ngIf="isExpanded || isShowing">Employees</span>
+      </mat-list-item>
+
+      <mat-list-item (click)="logout()" routerLinkActive="active">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <span matListItemTitle *ngIf="isExpanded || isShowing">Logout</span>
+      </mat-list-item>
+    </mat-nav-list>
+
+    <!-- Manager Section -->
+    <mat-divider *ngIf="isExpanded || isShowing"></mat-divider>
+    <mat-nav-list *ngIf="isManagerLoggedIn">
+      <h3 matSubheader *ngIf="isExpanded || isShowing">Manager</h3>
+
+      <mat-list-item routerLink="/manager/dashboard" routerLinkActive="active">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle *ngIf="isExpanded || isShowing">Dashboard</span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/manager/leaves" routerLinkActive="active">
+        <mat-icon matListItemIcon>beach_access</mat-icon>
+        <span matListItemTitle *ngIf="isExpanded || isShowing"
+          >Manage Leaves</span
+        >
+      </mat-list-item>
+
+      <mat-list-item (click)="logout()" routerLinkActive="active">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <span matListItemTitle *ngIf="isExpanded || isShowing">Logout</span>
+      </mat-list-item>
+    </mat-nav-list>
+
+    <!-- Employee Section -->
+    <mat-divider *ngIf="isExpanded || isShowing"></mat-divider>
+    <mat-nav-list *ngIf="isEmployeeLoggedIn">
+      <h3 matSubheader *ngIf="isExpanded || isShowing">Employee</h3>
+
+      <mat-list-item routerLink="/employee/dashboard" routerLinkActive="active">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle *ngIf="isExpanded || isShowing">Dashboard</span>
+      </mat-list-item>
+
+      <mat-list-item (click)="logout()" routerLinkActive="active">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <span matListItemTitle *ngIf="isExpanded || isShowing">Logout</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- Your main content goes here -->
+    <button mat-icon-button (click)="toggleSidenav()" class="toggle-btn">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
