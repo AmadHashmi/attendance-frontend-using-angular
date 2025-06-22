@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboard } from './components/admin-dashboard/admin-dashboard';
 import { ManageProjects } from './components/manage-projects/manage-projects';
 import { ManageManagers } from './components/manage-managers/manage-managers';
+import { ManageEmoloyees } from './components/manage-emoloyees/manage-emoloyees';
 
 const routes: Routes = [
   { path: 'dashboard', component: AdminDashboard },
   { path: 'manage-projects', component: ManageProjects },
   { path: 'manage-managers', component: ManageManagers },
+  { path: 'manage-employees', component: ManageEmoloyees },
 ];
 
 @NgModule({
