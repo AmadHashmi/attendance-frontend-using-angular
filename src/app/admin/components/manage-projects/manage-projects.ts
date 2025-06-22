@@ -22,7 +22,7 @@ export class ManageProjects implements OnInit {
   projectForm!: FormGroup;
 
   // creating table
-  projects: Project[] = [];
+  projects: Project[];
   displayedColumns: string[] = ['name', 'duration', 'startDate', 'actions'];
   dataSource: MatTableDataSource<Project>;
 
@@ -32,12 +32,10 @@ export class ManageProjects implements OnInit {
     private fb: FormBuilder,
     private adminService: Admin,
     private snackBarService: Snackbar
-  ) {
-    this.projects = this.generateMockProjects();
-    this.dataSource = new MatTableDataSource(this.projects);
-  }
+  ) {}
   ngOnInit(): void {
     this.initForm();
+    this.getAllProjects();
   }
 
   initForm(): void {
@@ -64,6 +62,7 @@ export class ManageProjects implements OnInit {
       (res) => {
         this.snackBarService.success('Project added successfully');
         this.resetForm();
+        this.getAllProjects();
       },
       (error) => {
         this.snackBarService.error('Error while adding project');
@@ -116,5 +115,12 @@ export class ManageProjects implements OnInit {
         startDate: new Date('2023-07-01'),
       },
     ];
+  }
+
+  getAllProjects() {
+    this.adminService.getProjects().subscribe((res) => {
+      this.projects = res;
+      this.dataSource = new MatTableDataSource(this.projects);
+    });
   }
 }

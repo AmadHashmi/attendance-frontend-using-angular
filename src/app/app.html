@@ -47,7 +47,10 @@
         <span matListItemTitle *ngIf="isExpanded || isShowing">Projects</span>
       </mat-list-item>
 
-      <mat-list-item routerLink="/admin/managers" routerLinkActive="active">
+      <mat-list-item
+        routerLink="/admin/manage-managers"
+        routerLinkActive="active"
+      >
         <mat-icon matListItemIcon>supervisor_account</mat-icon>
         <span matListItemTitle *ngIf="isExpanded || isShowing">Managers</span>
       </mat-list-item>

@@ -19,6 +19,8 @@ import {
   MatDatepickerModule,
 } from '@angular/material/datepicker';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [],
@@ -42,6 +44,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatDatepickerModule,
     MatDatepicker,
     MatPaginatorModule,
+    MatOptionModule,
+    MatSelectModule,
   ],
   exports: [
     CommonModule,
@@ -64,6 +68,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatDatepickerModule,
     MatPaginatorModule,
     MatDatepicker,
+    MatOptionModule,
+    MatSelectModule,
   ],
 })
 export class SharedModule {}

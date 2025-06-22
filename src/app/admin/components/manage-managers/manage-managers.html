@@ -1,7 +1,7 @@
-<div class="project-management-container">
+<div class="manager-management-container">
   <div class="header">
-    <h1>Project Management</h1>
-    <p>Create new projects and manage existing ones</p>
+    <h1>Manager's Management</h1>
+    <p>Create new managers and manage existing ones</p>
   </div>
 
   <div class="two-column-layout">
@@ -9,54 +9,64 @@
     <div class="form-column">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Create New Project</mat-card-title>
+          <mat-card-title>Create New Manager</mat-card-title>
         </mat-card-header>
 
         <mat-card-content>
-          <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="managerForm" (ngSubmit)="onSubmit()">
             <mat-form-field appearance="outline">
-              <mat-label>Project Name</mat-label>
+              <mat-label>Manager Name</mat-label>
               <input
                 matInput
                 formControlName="name"
-                placeholder="Enter project name"
+                placeholder="Enter manager name"
               />
-              <mat-error *ngIf="projectForm.get('name')?.hasError('required')">
-                Project name is required
+              <mat-error *ngIf="managerForm.get('name')?.hasError('required')">
+                Manager name is required
               </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-              <mat-label>Duration (days)</mat-label>
+              <mat-label>Manager email</mat-label>
               <input
                 matInput
-                type="number"
-                formControlName="duration"
-                placeholder="Enter duration"
+                formControlName="email"
+                placeholder="Enter manager email"
               />
-              <mat-error
-                *ngIf="projectForm.get('duration')?.hasError('required')"
-              >
-                Duration is required
+              <mat-error *ngIf="managerForm.get('email')?.hasError('required')">
+                Manager email is required
               </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-              <mat-label>Start Date</mat-label>
+              <mat-label>Manager password</mat-label>
               <input
+                type="password"
                 matInput
-                [matDatepicker]="picker"
-                formControlName="startDate"
+                formControlName="password"
+                placeholder="Enter manager password"
               />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="picker"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
               <mat-error
-                *ngIf="projectForm.get('startDate')?.hasError('required')"
+                *ngIf="managerForm.get('password')?.hasError('required')"
               >
-                Start date is required
+                Manager password is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Assigned Project</mat-label>
+              <mat-select formControlName="projectId">
+                <mat-option
+                  *ngFor="let project of projects"
+                  [value]="project.id"
+                >
+                  {{ project.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error
+                *ngIf="managerForm.get('projectId')?.hasError('required')"
+              >
+                Project assignment is required
               </mat-error>
             </mat-form-field>
 
@@ -65,7 +75,7 @@
                 mat-raised-button
                 color="primary"
                 type="submit"
-                [disabled]="!projectForm.valid"
+                [disabled]="!managerForm.valid"
               >
                 Add New Project
               </button>
@@ -82,20 +92,20 @@
     <div class="list-column">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Existing Projects</mat-card-title>
+          <mat-card-title>Existing Managers</mat-card-title>
           <mat-card-subtitle
-            >{{projects?.length}} project(s) found</mat-card-subtitle
+            >{{managers?.length}} managers(s) found</mat-card-subtitle
           >
         </mat-card-header>
 
         <mat-card-content>
           <div class="search-control">
             <mat-form-field appearance="outline" floatLabel="always">
-              <mat-label>Search Projects</mat-label>
+              <mat-label>Search Managers</mat-label>
               <input
                 matInput
                 (keyup)="applyFilter($event)"
-                placeholder="Filter projects"
+                placeholder="Filter managers"
               />
               <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
@@ -107,44 +117,42 @@
               <mat-header-cell *matHeaderCellDef mat-sort-header
                 >Name</mat-header-cell
               >
-              <mat-cell *matCellDef="let project">{{project.name}}</mat-cell>
+              <mat-cell *matCellDef="let manager">{{manager.name}}</mat-cell>
             </ng-container>
 
             <!-- Duration Column -->
-            <ng-container matColumnDef="duration">
+            <ng-container matColumnDef="email">
               <mat-header-cell *matHeaderCellDef mat-sort-header
-                >Duration</mat-header-cell
+                >Email</mat-header-cell
               >
-              <mat-cell *matCellDef="let project"
-                >{{project.duration}} days</mat-cell
-              >
+              <mat-cell *matCellDef="let manager">{{manager.email}}</mat-cell>
             </ng-container>
 
             <!-- Start Date Column -->
-            <ng-container matColumnDef="startDate">
+            <ng-container matColumnDef="project">
               <mat-header-cell *matHeaderCellDef mat-sort-header
-                >Start Date</mat-header-cell
+                >Project</mat-header-cell
               >
-              <mat-cell *matCellDef="let project"
-                >{{project.startDate | date}}</mat-cell
+              <mat-cell *matCellDef="let manager"
+                >{{manager.projectName}}</mat-cell
               >
             </ng-container>
 
             <!-- Actions Column -->
             <ng-container matColumnDef="actions">
               <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
-              <mat-cell *matCellDef="let project">
+              <mat-cell *matCellDef="let manager">
                 <button
                   mat-icon-button
                   color="primary"
-                  (click)="editProject(project)"
+                  (click)="editManager(manager)"
                 >
                   <mat-icon>edit</mat-icon>
                 </button>
                 <button
                   mat-icon-button
                   color="warn"
-                  (click)="deleteProject(project)"
+                  (click)="deleteManager(manager)"
                 >
                   <mat-icon>delete</mat-icon>
                 </button>
